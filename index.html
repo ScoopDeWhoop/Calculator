@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="calc.css">
+</head>
+
+<body>
+    <!-- Calculator Body -->
+    <div class="calc-body">
+        <!-- <input id="result"> -->
+        <!-- Calculator Display Screen -->
+        <div class="calc-screen">
+
+            <div id="calc-operation">
+            </div>
+            <div id="calc-typed">0</div>
+        </div>
+
+        <!-- Calculator Buttons -->
+        <div class="calc-button-row">
+            <button onclick="clear1()" class="ac">AC</button>
+            <button onclick="plusminus()" class="opt">&#43;&#47;&#8722;</button>
+            <button onclick="percentage()" class="opt">&#37;</button>
+            <button onclick="divide()" class="opt">&#247;</button>
+            <button onclick="myclick()">7</button>
+            <button onclick="myclick()">8</button>
+            <button onclick="myclick()">9</button>
+            <button onclick="times()" class="opt">&#215;</button>
+            <button onclick="myclick()">4</button>
+            <button onclick="myclick()">5</button>
+            <button onclick="myclick()">6</button>
+            <button onclick="minus()" class="opt">&#8722;</button>
+            <button onclick="myclick()">1</button>
+            <button onclick="myclick()">2</button>
+            <button onclick="myclick()">3</button>
+            <button onclick="add()" class="opt">&#43;</button>
+            <button onclick="myclick()">0</button>
+            <button onclick="dot()">.</button>
+            <button onclick="del()">&#9003;</button>
+            <button onclick="equal()" class="opt">&#61;</button>
+        </div>
+    </div>
+    <script>
+        let memory = 0
+        let action = 0
+        let result = 0
+        function myclick() {
+            if (document.getElementById("calc-typed").innerText == "0") {
+                document.getElementById("calc-typed").innerText = ""
+            }
+            document.getElementById("calc-typed").innerText += event.target.innerText
+        }
+        function clear1() {
+            document.getElementById("calc-typed").innerText = "0"
+            memory = 0
+        }
+        function add() {
+            if (action == 0) { memory = Number(document.getElementById("calc-typed").innerText) }
+            if (action == 1) { memory += Number(document.getElementById("calc-typed").innerText) }
+            document.getElementById("calc-typed").innerText = "0"
+            action = 1
+        }
+        function equal() {
+            if (action == 1)
+                {memory += Number(document.getElementById("calc-typed").innerText)
+                action = 0
+            }
+            if (action == 2) {
+                memory = memory - Number(document.getElementById("calc-typed").innerText)
+                action = 0
+            }
+            if (action == 3) {
+                memory *= Number(document.getElementById("calc-typed").innerText)
+                action = 0
+            }
+            if (action == 4) {
+                memory /= Number(document.getElementById("calc-typed").innerText)
+                action = 0
+            }
+            document.getElementById("calc-typed").innerText = memory
+        }
+        function minus() {
+            if (action == 0) { memory = Number(document.getElementById("calc-typed").innerText) }
+            if (action == 2) { memory -= Number(document.getElementById("calc-typed").innerText) }
+            document.getElementById("calc-typed").innerText = "0"
+            action = 2
+        }
+        function times() {
+            if (action == 0) {
+                memory = Number(document.getElementById("calc-typed").innerText)
+            }
+            if (action == 3) {
+                memory *= Number(document.getElementById("calc-typed").innerText)
+            }
+            document.getElementById("calc-typed").innerText = "0"
+            action = 3
+        }
+        function divide() {
+            if (action == 0) { memory = Number(document.getElementById("calc-typed").innerText) }
+            if (action == 4) { memory /= Number(document.getElementById("calc-typed").innerText) }
+            document.getElementById("calc-typed").innerText = "0"
+            action = 4
+        }
+        function del() {
+            document.getElementById("calc-typed").innerText = document.getElementById("calc-typed").innerText.slice(0, -1);
+        }
+        function dot() {
+            if (document.getElementById("calc-typed").innerText.includes('.')) {
+                document.getElementById("calc-typed").innerText
+            } else {
+                document.getElementById("calc-typed").innerText += event.target.innerText
+
+            }
+        }
+        function plusminus() {
+            document.getElementById("calc-typed").innerText = Number(document.getElementById("calc-typed").innerText) * -1
+        }
+    </script>
+</body>
+
+</html>
